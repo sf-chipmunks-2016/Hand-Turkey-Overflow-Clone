@@ -7,29 +7,22 @@ end
 
 # USERS NEW
 get '/users/new' do
-  @user = User.new
   erb :'users/new'
 end
 
 # USERS CREATE
 post '/users' do
+  user = User.find_by(email: params[:email])
 
-  if params[:password_confirmation] == params[:user][:password]
-    @user = User.new(params[:user])
-
-    if @user.save
-      session[:id] = @user.id
-      redirect "/users/#{@user.id}"
-    else
-      @errors = @user.errors.full_messages
-      erb :'users/new'
-    end
-
+  if user.nil?
+    user = User.create(name: params[:name], email: params[:email],password: params[:password])
+    session[:id] = user.id
+    redirect "/users/#{user.id}"
+    'im here'
   else
-    @errors = ["Passwords do not match!"]
-    erb :'users/new'
+    'sup'
+    redirect '/users/new'
   end
-  
 end
 
 # USERS SHOW

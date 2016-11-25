@@ -1,7 +1,12 @@
-<h1>USERS SHOW / PROFILE PAGE</h1>
-<h2>get '/users/:id'</h2>
+<h1>PROFILE PAGE</h1>
 
 <% if current_user %>
-  <h2>Welcome <%= current_user.username %>!</h2>
+  <h2>Welcome <%= current_user.name %>!</h2>
 
 <% end %>
+
+<h1>Here are your questions</h1>
+
+  <% @user.questions.each do |question|%>
+    <%= question.question_title%>
+  <%end%>
