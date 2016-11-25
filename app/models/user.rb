@@ -9,11 +9,12 @@ class User < ActiveRecord::Base
   include BCrypt
 
 	validates_presence_of :name
-  validates_presence_of :password
+  validates_presence_of :password_hash
   validates_presence_of :email
   validates_uniqueness_of :email
-  
+
   def password
+    puts "Allen => #{password_hash}"
     @password ||= Password.new(password_hash)
   end
 

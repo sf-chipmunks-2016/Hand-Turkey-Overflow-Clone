@@ -7,7 +7,6 @@ end
 
 # USERS NEW
 get '/users/new' do
-  @user = User.new
   erb :'users/new'
 end
 
@@ -29,7 +28,7 @@ post '/users' do
     @errors = ["Passwords do not match!"]
     erb :'users/new'
   end
-  
+
 end
 
 # USERS SHOW
