@@ -2,3 +2,10 @@
     <li><%= @question.question_title%></li>
     <li><%= @question.question_body%></li>
 </ul>
+
+<%if current_user%>
+  <form action="/answers" method="post">
+  <textarea name="comments" id="answer">Answer</textarea>
+  <input type="submit" value="Submit">
+  </form>
+<%end%>
