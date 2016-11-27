@@ -1,2 +1,8 @@
-<h1>HOME PAGE...</h1>
-<h1>HELLO WORLD</h1>
+<h1>HOME PAGE</h1>
+<h1>StackOverFlow Clone</h1>
+<ul>
+  <% @questions.each do |question|%>
+  <li><a href="/questions/<%=question.id%>"><%=question.question_title%></li>
+  <%end%>
+</ul>
+
