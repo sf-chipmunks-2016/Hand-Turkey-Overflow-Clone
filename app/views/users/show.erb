@@ -2,20 +2,32 @@
 
 <% if current_user %>
   <h2>Welcome <%= current_user.name %>!</h2>
-
+  <h3>Questions you have asked:</h3>
+    <ul>
+      <% @user.questions.each do|question| %>
+        <li id="questionTitle">
+      <!-- planning on making this a link to the question page when that route is available -->
+          <%= question.question_title %>
+          <br></br>
+          <%=question.question_body %>
+          <br></br>
+          <ul>
+            <% question.answers.each do |answer|%>
+          <!-- when question page is available, I'd like to only display answers on that page or make these -->
+          <!-- appear when you click on the question -->
+              <li id="answerBody">
+                <%=answer.answer_body%>
+                <br></br>
+              <div>
+                <button class="vote-count" voteable-id="<%= answer.id %>" voteable-type="<%= answer.class.name %>" up-vote=true>
+                  Upvote <%= answer.votes.count %>
+                </button>
+              </div>
+              </li>
+            <%end%>
+          </ul>
+        </li>
+      <%end%>
+    </ul>
 <% end %>
 
-<h1>Here are your questions</h1>
-
-<ul>  
-  <% @user.questions.each do |question|%>
-    <li><a href="/questions/<%=question.id%>"><%= question.question_title%></a></li>
-  <%end%>
-</ul>
-
-<%if current_user%>
-  <form action='/questions' method='post'>
-    
-  </form>
-<%else%>
-<%end%>
